@@ -16,13 +16,27 @@ to github or write to the appium-discuss mailing list.
 
 ## If you're running Appium from source
 
+* In order to clone with submodules, clone with `git clone --recursive`
+
+* In case you are facing problems with the submodules (i.e, 403 errors or `fatal: Needed a single revision`) and you don't want to clone the repo again, you can also do the following:
+
+```
+rm -rf submodules
+git submodule update --init
+git pull --recurse-submodules
+```
+
 * `git pull` to make sure you're running the latest code
+
 * Run the appropriate flavor of `reset.sh` based on what you're trying to automate:
     
-    ./reset.sh               # all
-    ./reset.sh --ios         # ios-only
-    ./reset.sh --android     # android-only
-    ./reset.sh --selendroid  # selendroid-only
+|Command|Target|
+|------|-----|
+|./reset.sh               |all|
+|./reset.sh --ios         |ios-only|
+|./reset.sh --android     |android-only|
+|./reset.sh --selendroid  |selendroid-only|
+
 * You might also want to run `reset.sh` with the `--dev` flag if you want the test apps downloaded and built as well.
 * You can also use `appium-doctor` to automatically verify that all dependencies are met. If running from source, you
 may have to use `bin/appium-doctor.js` or `node bin/appium-doctor.js`.
